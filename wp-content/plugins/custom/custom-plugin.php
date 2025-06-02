@@ -16,6 +16,8 @@ Requires PHP: 7.4
 // define const plugin directory path
 define("EMS_PLUGIN_DIR", plugin_dir_path(__FILE__));
 
+define("EMS_PLUGIN_URL", plugin_dir_url(__FILE__)); // For CSS and JS
+
 // Class 02
 
 // Calling action Hook to add Menu
