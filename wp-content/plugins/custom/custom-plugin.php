@@ -13,6 +13,9 @@ Requires at least: 6.8.1
 Requires PHP: 7.4
 */
 
+// define const plugin directory path
+define("EMS_PLUGIN_DIR", plugin_dir_path(__FILE__));
+
 // Class 02
 
 // Calling action Hook to add Menu
@@ -46,22 +49,10 @@ function cp_add_admin_menu() {
 
 // Handle Admin menu
 function ems_crud_system() {
-    ?>
-    <div>
-        <h1>Employee Management System</h1>
-        <p>Welcome to the Employee Management System. You can manage employees here.</p>
-        <p>Use the submenu to add or list employees.</p>
-    </div>
-    <?php
+    include_once(EMS_PLUGIN_DIR."pages/add-employee.php");
 }
 
 // Submenu callback function
 function ems_list_system() {
-    ?>
-    <div>
-        <h1>List of Employees</h1>
-        <p>This is where you can list all employees.</p>
-        <p>You can implement the logic to fetch and display employee data here.</p>
-    </div>
-    <?php
+   include_once(EMS_PLUGIN_DIR."pages/list-employee.php");
 }
