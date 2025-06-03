@@ -59,6 +59,7 @@ function ems_list_system() {
    include_once(EMS_PLUGIN_DIR."pages/list-employee.php");
 }
 
+// Plugin Activation
 register_activation_hook(__FILE__, "ems_create_table");
 
 function ems_create_table() {
@@ -80,4 +81,16 @@ function ems_create_table() {
 
     include_once(ABSPATH . 'wp-admin/includes/upgrade.php'); // Include the path of dbDelta
     dbDelta($sql);
+}
+
+// Plugin Deactivation
+register_deactivation_hook(__FILE__, "ems_drop_table");
+
+function ems_drop_table() {
+    global $wpdb;
+    $table_prefix = $wpdb->prefix;
+
+    $sql = "DROP TABLE IF EXISTS {$table_prefix}ems_form_data"; // {$table_prefix}ems_form_data
+
+    $wpdb->query($sql);
 }
