@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>List Employee</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="<?php echo EMS_PLUGIN_URL?>css/bootstrap.min.css">
-  <link rel="stylesheet" href="<?php echo EMS_PLUGIN_URL?>css/dataTables.dataTables.min.css">
-</head>
-<body>
-    <div class="container">
+<div class="container">
         <div class="row">
             <div class="col-sm-10">
                 <h2>List Employee</h2>
@@ -45,17 +35,4 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <script src="<?php echo EMS_PLUGIN_URL?>js/dataTables.min.js"></script>
-    <script src="<?php echo EMS_PLUGIN_URL?>js/jquery.min.js"></script>
-    <script src="<?php echo EMS_PLUGIN_URL?>js/bootstrap.min.js"></script>
-
-    <script>
-        $(function(){
-            // List Employee Table
-            new DataTable('#tbl-employee');
-        });
-    </script>
-</body>
-</html>
+</div>
