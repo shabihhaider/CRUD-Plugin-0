@@ -58,3 +58,26 @@ function ems_crud_system() {
 function ems_list_system() {
    include_once(EMS_PLUGIN_DIR."pages/list-employee.php");
 }
+
+register_activation_hook(__FILE__, "ems_create_table");
+
+function ems_create_table() {
+
+    global $wpdb;
+    $table_prefix = $wpdb->prefix; // In our case, prefix is 'wp_', it can be different in different cases
+
+    $sql = "
+    CREATE TABLE {$table_prefix}ems_form_data (
+        `id` int NOT NULL AUTO_INCREMENT,
+        `name` varchar(120) DEFAULT NULL,
+        `email` varchar(80) DEFAULT NULL,
+        `phoneNo` int DEFAULT NULL,
+        `gender` enum('male','female','other') DEFAULT NULL,
+        `designation` varchar(50) DEFAULT NULL,
+        PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    ";
+
+    include_once(ABSPATH . 'wp-admin/includes/upgrade.php'); // Include the path of dbDelta
+    dbDelta($sql);
+}
