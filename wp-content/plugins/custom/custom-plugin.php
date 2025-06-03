@@ -102,9 +102,11 @@ function ems_add_plugin_assets() {
     // CSS plugin files
     wp_enqueue_style("ems-bootstrap-css", EMS_PLUGIN_URL."css/bootstrap.min.css", array(), "1.0.0", "all");
     wp_enqueue_style("ems-datatable-css", EMS_PLUGIN_URL."css/dataTables.dataTables.min.css", array(), "1.0.0", "all");
+    wp_enqueue_style("ems-custom-css", EMS_PLUGIN_URL."css/custom.css", array(), "1.0.0", "all");
     
     // JS plugin files
     wp_enqueue_script("ems-bootstrap-js", EMS_PLUGIN_URL."js/bootstrap.min.js", array('jquery'), "1.0.0");
     wp_enqueue_script("ems-datatable-js", EMS_PLUGIN_URL."js/dataTables.min.js", array('jquery'), "1.0.0");
+    wp_enqueue_script("ems-validate-js", EMS_PLUGIN_URL."js/jquery.validate.min.js", array('jquery'), "1.0.0");
     wp_enqueue_script("ems-custom-js", EMS_PLUGIN_URL."js/custom.js", array('jquery'), "1.0.0"); // accrss Datatable from script
 }

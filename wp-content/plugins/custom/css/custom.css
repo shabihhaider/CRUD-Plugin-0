@@ -1,0 +1,6 @@
+#ems-add-employee-form label.error{
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    font-style: italic;
+}

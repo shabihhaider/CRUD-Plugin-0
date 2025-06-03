@@ -6,14 +6,14 @@
       <div class="panel panel-primary">
         <div class="panel-heading">Add Employee</div>
         <div class="panel-body">
-            <form action="/action_page.php">
+            <form action="javascript:void(0)" method="post" id="ems-add-employee-form">
                 <div class="form-group">
                   <label for="name">Name:</label>
-                  <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name">
+                  <input type="text" required class="form-control" id="name" placeholder="Enter Name" name="name">
                 </div>
                 <div class="form-group">
                   <label for="email">Email:</label>
-                  <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                  <input type="email" required class="form-control" id="email" placeholder="Enter email" name="email">
                 </div>
                 <div class="form-group">
                   <label for="pwd">Password:</label>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group">
                   <label for="designation">Designation:</label>
-                  <input type="text" class="form-control" id="designation" placeholder="Enter Designation" name="designation">
+                  <input type="text" required class="form-control" id="designation" placeholder="Enter Designation" name="designation">
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
             </form>
