@@ -1,3 +1,43 @@
+<?php
+
+  $message = '';
+  $status = '';
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn-submit'])) {
+      
+    // Form Submitted
+    global $wpdb;
+
+    // sanitize means to clean the data if user has entered any malicious code
+    $name = sanitize_text_field($_POST['name']);
+    $email = sanitize_email($_POST['email']);
+    $phoneNo = sanitize_text_field($_POST['phoneNo']);
+    $gender = sanitize_text_field($_POST['gender']);
+    $designation = sanitize_text_field($_POST['designation']);
+
+    $wpdb->insert(
+        "{$wpdb->prefix}ems_form_data",
+        array(
+            'name' => $name,
+            'email' => $email,
+            'phoneNo' => $phoneNo,
+            'gender' => $gender,
+            'designation' => $designation
+        )
+    );
+
+    $last_insert_id = $wpdb->insert_id;
+
+    if ($last_insert_id > 0) {
+      $message = "Employee added successfully with ID: " . $last_insert_id;
+      $status = 1;
+    } else {
+      $message = "Failed to add employee. Please try again.";
+      $status = 0;
+    }
+  }
+?>
+
 <div class="container">
   <div class="row">
     <div class="col-sm-8">
@@ -6,7 +46,24 @@
       <div class="panel panel-primary">
         <div class="panel-heading">Add Employee</div>
         <div class="panel-body">
-            <form action="javascript:void(0)" method="post" id="ems-add-employee-form">
+          <?php
+            if (!empty($message)) {
+              if ($status == 1) {
+                ?>
+                  <div class="alert alert-success">
+                    <?php echo $message; ?>
+                  </div>
+                <?php
+              } else {
+                ?>
+                  <div class="alert alert-danger">
+                    <?php echo $message; ?>
+                  </div>
+                <?php
+              }
+            } 
+          ?>
+            <form action="<?php $_SERVER['PHP_SELF']; ?>?page=ems-plugin" method="post" id="ems-add-employee-form">
                 <div class="form-group">
                   <label for="name">Name:</label>
                   <input type="text" required class="form-control" id="name" placeholder="Enter Name" name="name">
@@ -36,7 +93,7 @@
                   <label for="designation">Designation:</label>
                   <input type="text" required class="form-control" id="designation" placeholder="Enter Designation" name="designation">
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success" name="btn-submit">Submit</button>
             </form>
         </div>
       </div>
