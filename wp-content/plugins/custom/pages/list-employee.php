@@ -38,7 +38,7 @@
                                                     <td>
                                                         <a href="admin.php?page=ems-plugin&action=edit&empId=<?php echo $employee['id']; ?>" class="btn btn-warning">Edit</a>
                                                         <a href="admin.php?page=ems-list-employee&action=delete&empId=<?php echo $employee['id']; ?>" class="btn btn-danger">Delete</a>
-                                                        <a href="admin.php?page=ems-list-employee&action=view&empId=<?php echo $employee['id']; ?>" class="btn btn-info">View</a>
+                                                        <a href="admin.php?page=ems-plugin&action=view&empId=<?php echo $employee['id']; ?>" class="btn btn-info">View</a>
                                                     </td>
                                                 </tr>
                                             <?php
