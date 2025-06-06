@@ -1,6 +1,12 @@
+<?php
+    global $wpdb;
+
+    $employees = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}ems_form_data", ARRAY_A);
+?>
+
 <div class="container">
         <div class="row">
-            <div class="col-sm-10">
+            <div class="col-sm-12">
                 <h2>List Employee</h2>
                 <div class="panel panel-primary">
                     <div class="panel-heading">List Employee</div>
@@ -12,23 +18,36 @@
                                     <th>#Name</th>
                                     <th>#Email</th>
                                     <th>#Phone No</th>
+                                    <th>#Gender</th>
                                     <th>#Designation</th>
                                     <th>#Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Shabih Haider</td>
-                                    <td>shabih@gmail.com</td>
-                                    <td>0124214241</td>
-                                    <td>Web Developer</td>
-                                    <td>
-                                        <a href="javascript:void(0)" class="btn btn-warning">Edit</a>
-                                        <a href="javascript:void(0)" class="btn btn-danger">Delete</a>
-                                        <a href="javascript:void(0)" class="btn btn-info">View</a>
-                                    </td>
-                                </tr>
+                                <?php
+                                    if (count($employees) > 0) {
+                                        foreach ($employees as $employee) {
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo $employee['id']; ?></td>
+                                                    <td><?php echo $employee['name']; ?></td>
+                                                    <td><?php echo $employee['email']; ?></td>
+                                                    <td><?php echo $employee['phoneNo']; ?></td>
+                                                    <td><?php echo ucfirst($employee['gender']); ?></td>
+                                                    <td><?php echo $employee['designation']; ?></td>
+                                                    <td>
+                                                        <a href="admin.php?page=ems-plugin&action=edit&empId=<?php echo $employee['id']; ?>" class="btn btn-warning">Edit</a>
+                                                        <a href="admin.php?page=ems-list-employee&action=delete&empId=<?php echo $employee['id']; ?>" class="btn btn-danger">Delete</a>
+                                                        <a href="admin.php?page=ems-list-employee&action=view&empId=<?php echo $employee['id']; ?>" class="btn btn-info">View</a>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                        }
+                                    } else {
+                                        echo "No Employee Found";
+                                    }
+                                ?>
+                                
                             </tbody>
                         </table>
                     </div>
