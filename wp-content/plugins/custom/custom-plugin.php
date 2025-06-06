@@ -108,5 +108,7 @@ function ems_add_plugin_assets() {
     wp_enqueue_script("ems-bootstrap-js", EMS_PLUGIN_URL."js/bootstrap.min.js", array('jquery'), "1.0.0");
     wp_enqueue_script("ems-datatable-js", EMS_PLUGIN_URL."js/dataTables.min.js", array('jquery'), "1.0.0");
     wp_enqueue_script("ems-validate-js", EMS_PLUGIN_URL."js/jquery.validate.min.js", array('jquery'), "1.0.0");
-    wp_enqueue_script("ems-custom-js", EMS_PLUGIN_URL."js/custom.js", array('jquery'), "1.0.0"); // accrss Datatable from script
+    //wp_enqueue_script("ems-custom-js", EMS_PLUGIN_URL."js/custom.js", array('jquery'), "1.0.0"); // accrss Datatable from script
+
+    wp_add_inline_script("ems-validate-js", file_get_contents(EMS_PLUGIN_DIR."js/custom.js"), 'after'); // Inline script to add custom JS
 }
