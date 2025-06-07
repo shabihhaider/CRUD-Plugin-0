@@ -81,6 +81,16 @@ function ems_create_table() {
 
     include_once(ABSPATH . 'wp-admin/includes/upgrade.php'); // Include the path of dbDelta
     dbDelta($sql);
+
+    // Create Wordpress Page (more learn from this: https://developer.wordpress.org/reference/functions/wp_insert_post/)
+    $pageData = array(
+        'post_title' => 'Employee Management System Page',
+        'post_content' => 'This is a sample page.',
+        'post_status' => 'publish',
+        'post_type' => 'page',
+        'post_name' => 'employee-management-system-page', // Slug for the page
+    );
+    wp_insert_post($pageData);
 }
 
 // Plugin Deactivation
