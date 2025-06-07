@@ -103,6 +103,15 @@ function ems_drop_table() {
     $sql = "DROP TABLE IF EXISTS {$table_prefix}ems_form_data"; // {$table_prefix}ems_form_data
 
     $wpdb->query($sql);
+
+    // Delete wordpress page
+    $pageSlug = "employee-management-system-page"; // Slug of the page we created during activation
+    $pageInfo = get_page_by_path($pageSlug);
+
+    if (!empty($pageInfo)) {
+        $pageId = $pageInfo->ID; // Get the ID of the page
+        wp_delete_post($pageId, true); // Delete the page permanently
+    }
 }
 
 // Add CS/JS to plugin (if you have 3rd party links add these in plugin)
