@@ -4,6 +4,8 @@ class StudentManagement {
     public function __construct() {
         // Initialize the plugin
         add_action('admin_menu', array($this, 'addAdminMenus'));
+
+        add_action('admin_enqueue_scripts', array($this, 'addStudentPluginFiles'));
     }
 
     // Add student plugin menus and submenus
@@ -81,5 +83,16 @@ class StudentManagement {
 
         $sql = "DROP TABLE IF EXISTS {$table_prefix}student_management";
         $wpdb->query($sql);
+    }
+
+    // Add Student Plugin Files
+    public function addStudentPluginFiles() {
+        // Style
+        wp_enqueue_style('datatable-css', SMS_PLUGIN_URL . 'assets/css/dataTables.dataTables.min.css', array(), "1.0", 'all');
+        wp_enqueue_style('style-css', SMS_PLUGIN_URL . 'assets/css/style.css', array(), "1.0", 'all');
+        
+        // Script
+        wp_enqueue_script('datatable-js', SMS_PLUGIN_URL . 'assets/js/dataTables.min.js', array('jquery'), "1.0");
+        wp_enqueue_script('style-js', SMS_PLUGIN_URL . 'assets/js/script.js', array('jquery'), "1.0");
     }
 }

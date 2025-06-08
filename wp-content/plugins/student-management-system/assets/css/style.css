@@ -1,0 +1,142 @@
+/* Add Student CSS */
+.add-card {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+.add-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form input style */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+select:focus {
+    outline: none;
+    border-color: #6cb2eb;
+    box-shadow: 0 0 5px rgba(108, 178, 235, 0.5);
+}
+
+/* Submit button style */
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+
+
+
+/* List Student CSS */
+.list-card {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+.list-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Table style */
+.table-container {
+    overflow-x: auto;
+    width: 100%; /* Adjust as needed */
+    padding: 10px;
+}
+
+.student-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+.student-table th,
+.student-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.student-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Button style */
+.btn-edit,
+.btn-delete,
+.btn-view {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 4px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.btn-edit {
+    background-color: #28a745;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+}
+
+.btn-view {
+    background-color: #007bff;
+}
+
+.btn-edit:hover,
+.btn-delete:hover,
+.btn-view:hover {
+    opacity: 0.8;
+}
