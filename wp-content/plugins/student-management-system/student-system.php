@@ -20,3 +20,6 @@ $studentManagementObject = new StudentManagement();
 
 // Create Table Structure
 register_activation_hook(__FILE__, array($studentManagementObject, 'createStudentTable'));
+
+// Remove/Drop Table
+register_deactivation_hook(__FILE__, array($studentManagementObject, "dropStudentTable"));

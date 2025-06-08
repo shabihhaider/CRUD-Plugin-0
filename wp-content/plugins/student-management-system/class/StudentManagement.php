@@ -69,6 +69,14 @@ class StudentManagement {
 
         include_once(ABSPATH . 'wp-admin/includes/upgrade.php'); // Include the path of dbDelta
         dbDelta($sql);
+    }       
 
-    }        
+    public function dropStudentTable() {
+        global $wpdb;
+
+        $table_prefix = $wpdb->prefix;
+
+        $sql = "DROP TABLE IF EXISTS {$table_prefix}student_management";
+        $wpdb->query($sql);
+    }
 }
