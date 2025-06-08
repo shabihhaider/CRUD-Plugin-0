@@ -42,7 +42,8 @@ class StudentManagement {
 
     // List student callback
     public function listStudentCallback() {
-        echo "<h1>List Student</h1>";
+        include_once(SMS_PLUGIN_PATH."pages/list-student.php");
+        
     }
 
     // Add student callback
