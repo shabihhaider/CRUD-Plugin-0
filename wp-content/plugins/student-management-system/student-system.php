@@ -17,3 +17,6 @@ define("SMS_PLUGIN_URL", plugin_dir_url(__FILE__));
 include_once(SMS_PLUGIN_PATH."class/StudentManagement.php"); // Add class path
 
 $studentManagementObject = new StudentManagement();
+
+// Create Table Structure
+register_activation_hook(__FILE__, array($studentManagementObject, 'createStudentTable'));
