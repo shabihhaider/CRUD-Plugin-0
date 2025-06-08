@@ -6,6 +6,7 @@ class StudentManagement {
         add_action('admin_menu', array($this, 'addAdminMenus'));
     }
 
+    // Add student plugin menus and submenus
     public function addAdminMenus() {
         // Plugin Menu
         add_menu_page(
@@ -46,10 +47,10 @@ class StudentManagement {
 
     // Add student callback
     public function addStudentCallback() {
-        echo "<h1>Add Student</h1>";
+        include_once(SMS_PLUGIN_PATH."pages/add-student.php");
     }
 
-    // Create table structure
+    // Create Student Table
     public function createStudentTable() {
         global $wpdb;
 
@@ -71,6 +72,7 @@ class StudentManagement {
         dbDelta($sql);
     }       
 
+    // Drop Student Table
     public function dropStudentTable() {
         global $wpdb;
 
