@@ -1,5 +1,13 @@
 <div class="add-card">
-    <h2>Add Student</h2>
+    <h2>
+      <?php
+        if (isset($action) && $action == "edit") {
+          echo "Edit Student";
+        } else {
+          echo "Add Student";
+        }
+      ?>
+    </h2>
 
     <?php if (!empty($displayMessage)) {
         ?>
@@ -9,7 +17,14 @@
         <?php
     } ?>
 
-    <form action="admin.php?page=add-student-management" method="post" class="add-student-form">
+    <form method="post" class="add-student-form" 
+    action="<?php 
+        if ($action == "edit") {
+            echo 'admin.php?page=student-management&action=edit&id=' . $student["Id"];
+        } else {
+            echo 'admin.php?page=add-student-management';
+        }
+    ?>">
                 <!-- Name -->
                 <div class="form-group">
                   <label for="name">Name:</label>
@@ -19,6 +34,9 @@
                     id="name" 
                     placeholder="Enter Name" 
                     name="name"
+                    value="<?php if (isset($student['name'])) {
+                      echo $student['name'];
+                    } ?>"
                     >
                 </div>
 
@@ -31,6 +49,9 @@
                     id="email" 
                     placeholder="Enter email" 
                     name="email"
+                    value="<?php if (isset($student['email'])) {
+                      echo $student['email'];
+                    } ?>"
                   >
                 </div>
 
@@ -39,9 +60,15 @@
                   <label for="gender">Gender:</label>
                   <select name="gender" id="gender" class="form-control" required>
                     <option value="">Select gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
+                    <option <?php if (isset($student['gender']) && $student['gender'] == 'male') {
+                      echo 'selected';
+                    } ?> value="male">Male</option>
+                    <option <?php if (isset($student['gender']) && $student['gender'] == 'female') {
+                      echo 'selected';
+                    } ?> value="female">Female</option>
+                    <option <?php if (isset($student['gender']) && $student['gender'] == 'other') {
+                      echo 'selected';
+                    } ?> value="other">Other</option>
                   </select>
                 </div>
 
@@ -54,6 +81,9 @@
                     id="phone" 
                     placeholder="Enter phone number" 
                     name="phone"
+                    value="<?php if (isset($student['phoneNo'])) {
+                      echo $student['phoneNo'];
+                    } ?>"
                   >
                 </div>
                 

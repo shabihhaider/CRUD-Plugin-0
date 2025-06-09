@@ -4,6 +4,7 @@ class StudentManagement {
 
     private $message = "";
     private $status = "";
+    private $action = "";
 
     public function __construct() {
         // Initialize the plugin
@@ -49,12 +50,27 @@ class StudentManagement {
     // List student callback
     public function listStudentCallback() {
 
-        // Get Student data from db
-        global $wpdb;
-        $table_prefix = $wpdb->prefix;
-        $students = $wpdb->get_results("SELECT * FROM {$table_prefix}student_management", ARRAY_A);
+        if (isset($_GET["action"]) && $_GET["action"] == "edit") {
+            global $wpdb;
+            $this->action = "edit";
+            $student_id = $_GET["id"];
+            $table_prefix = $wpdb->prefix;
+
+            $student = $wpdb->get_row(
+                $wpdb->prepare("SELECT * FROM {$table_prefix}student_management WHERE Id = %d", $student_id), 
+                ARRAY_A
+            );
+
+            include_once(SMS_PLUGIN_PATH."pages/add-student.php");
+        } else {
+            // Get Student data from db
+            global $wpdb;
+            $table_prefix = $wpdb->prefix;
+            $students = $wpdb->get_results("SELECT * FROM {$table_prefix}student_management", ARRAY_A);
+            
+            include_once(SMS_PLUGIN_PATH."pages/list-student.php");
+        }
         
-        include_once(SMS_PLUGIN_PATH."pages/list-student.php");
     }
 
     // Add student callback
