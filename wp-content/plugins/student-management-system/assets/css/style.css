@@ -62,6 +62,16 @@ button:hover {
 }
 
 
+.display-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+
 
 
 /* List Student CSS */

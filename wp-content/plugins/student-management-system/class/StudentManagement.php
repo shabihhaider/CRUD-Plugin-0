@@ -1,6 +1,10 @@
 <?php
 
 class StudentManagement {
+
+    private $message = "";
+    private $status = "";
+
     public function __construct() {
         // Initialize the plugin
         add_action('admin_menu', array($this, 'addAdminMenus'));
@@ -45,12 +49,51 @@ class StudentManagement {
     // List student callback
     public function listStudentCallback() {
         include_once(SMS_PLUGIN_PATH."pages/list-student.php");
-        
     }
 
     // Add student callback
     public function addStudentCallback() {
+
+        // Check if the form is submitted
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn_submit'])) {
+            $this->saveStudentFormData();
+        }
+
+        $displayMessage = $this->message;
+        $displayStatus = $this->status;
+
         include_once(SMS_PLUGIN_PATH."pages/add-student.php");
+    }
+
+    // Save Student form data
+    private function saveStudentFormData() {
+        global $wpdb;
+
+            $name = sanitize_text_field($_POST['name']);
+            $email = sanitize_text_field($_POST['email']);
+            $gender = sanitize_text_field($_POST['gender']);
+            $phone = sanitize_text_field($_POST['phone']);
+
+            $table_prefix = $wpdb->prefix;
+
+            $wpdb->insert("{$table_prefix}student_management", array(
+                "name" => $name,
+                "email" => $email,
+                "gender" => $gender,
+                "phoneNo" => $phone,
+            ));
+
+            $student_id = $wpdb->insert_id;
+
+            if ($student_id > 0) {
+                // Saved data successfully
+                $this->message = "Data Saved Successfully";
+                $this->status = 1;
+            } else {
+                // Failed to saved data
+                $this->message = "Failed to Saved Data";
+                $this->status = 0;
+            }
     }
 
     // Create Student Table

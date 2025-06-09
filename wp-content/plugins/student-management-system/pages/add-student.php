@@ -1,6 +1,15 @@
 <div class="add-card">
     <h2>Add Student</h2>
-    <form action="" method="post" class="add-student-form">
+
+    <?php if (!empty($displayMessage)) {
+        ?>
+            <div class="display-success">
+                <?php echo $displayMessage; ?>
+            </div>
+        <?php
+    } ?>
+
+    <form action="admin.php?page=add-student-management" method="post" class="add-student-form">
                 <!-- Name -->
                 <div class="form-group">
                   <label for="name">Name:</label>
@@ -48,6 +57,6 @@
                   >
                 </div>
                 
-                <button type="submit">Submit</button>
+                <button type="submit" name="btn_submit">Submit</button>
     </form>
 </div>
