@@ -48,6 +48,12 @@ class StudentManagement {
 
     // List student callback
     public function listStudentCallback() {
+
+        // Get Student data from db
+        global $wpdb;
+        $table_prefix = $wpdb->prefix;
+        $students = $wpdb->get_results("SELECT * FROM {$table_prefix}student_management", ARRAY_A);
+        
         include_once(SMS_PLUGIN_PATH."pages/list-student.php");
     }
 

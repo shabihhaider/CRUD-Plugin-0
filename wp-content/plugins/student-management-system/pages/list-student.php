@@ -13,18 +13,27 @@
         </thead>
 
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Shabih Haider</td>
-            <td>shabih19@gmail.com</td>
-            <td>Male</td>
-            <td>28736721</td>
-            <td>
-              <a href="#" class="btn-edit">Edit</a>
-              <a href="#" class="btn-view">View</a>
-              <a href="#" class="btn-delete">Delete</a>
-            </td>
-          </tr>
+
+          <?php
+            if (count($students) > 0) {
+              foreach ($students as $student) {
+               ?>
+                 <tr>
+                  <td><?php echo $student["Id"] ?></td>
+                  <td><?php echo $student["name"] ?></td>
+                  <td><?php echo $student["email"] ?></td>
+                  <td><?php echo $student["gender"] ?></td>
+                  <td><?php echo $student["phoneNo"] ?></td>
+                  <td>
+                    <a href="admin.php?page=student-management&action=edit&id=<?php echo $student["Id"] ?>" class="btn-edit">Edit</a>
+                    <a href="admin.php?page=student-management&action=view&id=<?php echo $student["Id"] ?>" class="btn-view">View</a>
+                    <a href="admin.php?page=student-management&action=delete&id=<?php echo $student["Id"] ?>" class="btn-delete">Delete</a>
+                  </td>
+                </tr>
+               <?php
+              }
+            }    
+          ?>
         </tbody>
       </table>
     </div>
