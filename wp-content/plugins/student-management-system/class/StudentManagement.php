@@ -56,10 +56,28 @@ class StudentManagement {
             $student_id = $_GET["id"];
             $table_prefix = $wpdb->prefix;
 
-            $student = $wpdb->get_row(
-                $wpdb->prepare("SELECT * FROM {$table_prefix}student_management WHERE Id = %d", $student_id), 
-                ARRAY_A
-            );
+            if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['btn_submit'])) {
+                $name = sanitize_text_field($_POST['name']);
+                $email = sanitize_text_field($_POST['email']);
+                $gender = sanitize_text_field($_POST['gender']);
+                $phone = sanitize_text_field($_POST['phone']);
+
+                $wpdb->update("{$table_prefix}student_management", array(
+                    'name' => $name,
+                    'email' => $email,
+                    'gender' => $gender,
+                    'phoneNo' => $phone
+                ), array(
+                    'Id' => $student_id
+                ));
+
+                $this->message = "Student Updated Successfully";
+            }
+
+            $displayMessage = $this->message;
+
+            $student = $this->getStudentData($student_id);
+            $action = $this->action;
 
             include_once(SMS_PLUGIN_PATH."pages/add-student.php");
         } else {
@@ -71,6 +89,19 @@ class StudentManagement {
             include_once(SMS_PLUGIN_PATH."pages/list-student.php");
         }
         
+    }
+
+    // Get student data
+    private function getStudentData($student_id) {
+        global $wpdb;
+        $table_prefix = $wpdb->prefix;
+
+        $student = $wpdb->get_row(
+            $wpdb->prepare("SELECT * FROM {$table_prefix}student_management WHERE Id = %d", $student_id), 
+            ARRAY_A
+        );
+
+        return $student;
     }
 
     // Add student callback
