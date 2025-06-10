@@ -53,6 +53,8 @@ class StudentManagement {
         if (isset($_GET["action"]) && $_GET["action"] == "edit") {
             global $wpdb;
             $this->action = "edit";
+            $action = $this->action;
+
             $student_id = $_GET["id"];
             $table_prefix = $wpdb->prefix;
 
@@ -77,8 +79,16 @@ class StudentManagement {
             $displayMessage = $this->message;
 
             $student = $this->getStudentData($student_id);
+
+            include_once(SMS_PLUGIN_PATH."pages/add-student.php");
+        } elseif(isset($_GET["action"]) && $_GET["action"] == "view") {
+            $this->action = "view";
             $action = $this->action;
 
+            $student_id = $_GET["id"];
+            $student = $this->getStudentData($student_id);
+
+            // View single student data
             include_once(SMS_PLUGIN_PATH."pages/add-student.php");
         } else {
             // Get Student data from db

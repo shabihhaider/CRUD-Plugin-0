@@ -3,6 +3,8 @@
       <?php
         if (isset($action) && $action == "edit") {
           echo "Edit Student";
+        } elseif(isset($action) && $action == "view") {
+          echo "View Student";
         } else {
           echo "Add Student";
         }
@@ -37,6 +39,9 @@
                     value="<?php if (isset($student['name'])) {
                       echo $student['name'];
                     } ?>"
+                    <?php if (isset($action) && $action == "view") {
+                      echo "readonly";
+                    } ?>
                     >
                 </div>
 
@@ -52,13 +57,20 @@
                     value="<?php if (isset($student['email'])) {
                       echo $student['email'];
                     } ?>"
+                    <?php if (isset($action) && $action == "view") {
+                      echo "readonly";
+                    } ?>
                   >
                 </div>
 
                 <!-- Gender -->
                 <div class="form-group">
                   <label for="gender">Gender:</label>
-                  <select name="gender" id="gender" class="form-control" required>
+                  <select name="gender" id="gender" class="form-control" required
+                    <?php if (isset($action) && $action == "view") {
+                        echo "disabled";
+                      } ?>
+                    >
                     <option value="">Select gender</option>
                     <option <?php if (isset($student['gender']) && $student['gender'] == 'male') {
                       echo 'selected';
@@ -84,9 +96,20 @@
                     value="<?php if (isset($student['phoneNo'])) {
                       echo $student['phoneNo'];
                     } ?>"
+                    <?php if (isset($action) && $action == "view") {
+                      echo "readonly";
+                    } ?>
                   >
                 </div>
                 
-                <button type="submit" name="btn_submit">Submit</button>
+                <?php
+                  if (isset($action) && $action == "view") {
+                    // No button
+                  } else {
+                    ?>
+                      <button type="submit" name="btn_submit">Submit</button>
+                    <?php
+                  }
+                ?>
     </form>
 </div>
