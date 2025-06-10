@@ -94,6 +94,22 @@ class StudentManagement {
             // Get Student data from db
             global $wpdb;
             $table_prefix = $wpdb->prefix;
+
+            if (isset($_GET["action"]) && $_GET["action"] == "delete") {
+                // Get student data based on the given Id
+                $studentData = $this->getStudentData($_GET["id"]);
+
+                // If student exist delete it
+                if (!empty($studentData)) {
+                    $wpdb->delete("{$table_prefix}student_management", array(
+                        'Id' => intval($_GET["id"])
+                    ));
+
+                    $this->message = "Student Deleted Successfully";
+                    $displayMessage = $this->message;
+                } 
+            }
+            
             $students = $wpdb->get_results("SELECT * FROM {$table_prefix}student_management", ARRAY_A);
             
             include_once(SMS_PLUGIN_PATH."pages/list-student.php");
