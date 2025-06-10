@@ -1,4 +1,4 @@
-<div class="list-card">
+<div class="sms-plugin list-card">
     <h2>List Student</h2>
 
     <?php if (!empty($displayMessage)) {
@@ -16,6 +16,7 @@
           <th>#Name</th>
           <th>#Email</th>
           <th>#Gender</th>
+          <th>#Profile Image</th>
           <th>#Phone</th>
           <th>#Action</th>
         </thead>
@@ -31,6 +32,7 @@
                   <td><?php echo $student["name"] ?></td>
                   <td><?php echo $student["email"] ?></td>
                   <td><?php echo $student["gender"] ?></td>
+                  <td><?php ?> <img src="<?php echo $student["profile_image"] ?>" alt="Profile Image" style="width: 100px;"> <?php ?></td>
                   <td><?php echo $student["phoneNo"] ?></td>
                   <td>
                     <a href="admin.php?page=student-management&action=edit&id=<?php echo $student["Id"] ?>" class="btn-edit">Edit</a>

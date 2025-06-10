@@ -10,7 +10,8 @@ class StudentManagement {
         // Initialize the plugin
         add_action('admin_menu', array($this, 'addAdminMenus'));
 
-        add_action('admin_enqueue_scripts', array($this, 'addStudentPluginFiles'));
+        //add_action('admin_enqueue_scripts', array($this, 'addStudentPluginFiles'));
+        add_action('admin_enqueue_scripts', [$this, 'addStudentPluginFiles']);
     }
 
     // Add student plugin menus and submenus
@@ -63,12 +64,24 @@ class StudentManagement {
                 $email = sanitize_text_field($_POST['email']);
                 $gender = sanitize_text_field($_POST['gender']);
                 $phone = sanitize_text_field($_POST['phone']);
-
+                $profile_image = sanitize_text_field($_POST['profile_url']);
+                
+                // NONCE Verification
+                if (isset($_POST['wp_nonce_add_student']) && wp_verify_nonce($_POST['wp_nonce_add_student'], "wp_nonce_add_student")) {
+                    // Success
+                    $this->message = "Verification Success";
+                } else {
+                    // Failed to verify
+                    $this->message = "Verification Failed";
+                    $this->status = 0;
+                }
+                // Update student data
                 $wpdb->update("{$table_prefix}student_management", array(
                     'name' => $name,
                     'email' => $email,
                     'gender' => $gender,
-                    'phoneNo' => $phone
+                    'phoneNo' => $phone,
+                    'profile_image' => $profile_image
                 ), array(
                     'Id' => $student_id
                 ));
@@ -161,6 +174,7 @@ class StudentManagement {
             $email = sanitize_text_field($_POST['email']);
             $gender = sanitize_text_field($_POST['gender']);
             $phone = sanitize_text_field($_POST['phone']);
+            $profile_image = sanitize_text_field($_POST['profile_url']);
 
             $table_prefix = $wpdb->prefix;
 
@@ -169,6 +183,7 @@ class StudentManagement {
                 "email" => $email,
                 "gender" => $gender,
                 "phoneNo" => $phone,
+                "profile_image" => $profile_image
             ));
 
             $student_id = $wpdb->insert_id;
@@ -197,6 +212,7 @@ class StudentManagement {
             `email` varchar(80) NOT NULL,
             `gender` enum('male','female','other') DEFAULT NULL,
             `phoneNo` int DEFAULT NULL,
+            `profile_image` TEXT DEFAULT NULL,
             `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY (`Id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
@@ -223,7 +239,9 @@ class StudentManagement {
         wp_enqueue_style('style-css', SMS_PLUGIN_URL . 'assets/css/style.css', array(), "1.0", 'all');
         
         // Script
+        wp_enqueue_media();
         wp_enqueue_script('datatable-js', SMS_PLUGIN_URL . 'assets/js/dataTables.min.js', array('jquery'), "1.0");
-        wp_enqueue_script('style-js', SMS_PLUGIN_URL . 'assets/js/script.js', array('jquery'), "1.0");
+        wp_enqueue_script('style-js', SMS_PLUGIN_URL . 'assets/js/script.js', array('jquery'), time(), true);
+        //wp_enqueue_script('style-js', SMS_PLUGIN_URL . 'assets/js/script.js', array('jquery'), "1.0");
     }
 }

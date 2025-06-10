@@ -1,5 +1,5 @@
 /* Add Student CSS */
-.add-card {
+.sms-plugin.add-card {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
@@ -9,44 +9,44 @@
     font-family: Arial, sans-serif;
 }
 
-.add-card h2 {
+.sms-plugin.add-card h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
 /* Form input style */
-.form-group {
+.sms-plugin .form-group {
     margin-bottom: 15px;
 }
 
-label {
+.sms-plugin label {
     display: block;
     margin-bottom: 5px;
     color: #333;
     font-weight: bold;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-select {
+.sms-plugin input[type="text"],
+.sms-plugin input[type="email"],
+.sms-plugin input[type="tel"],
+.sms-plugin select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="tel"]:focus,
-select:focus {
+.sms-plugin input[type="text"]:focus,
+.sms-plugin input[type="email"]:focus,
+.sms-plugin input[type="tel"]:focus,
+.sms-plugin select:focus {
     outline: none;
     border-color: #6cb2eb;
     box-shadow: 0 0 5px rgba(108, 178, 235, 0.5);
 }
 
 /* Submit button style */
-button {
+.sms-plugin button {
     background-color: #4caf50;
     color: white;
     padding: 12px 20px;
@@ -57,12 +57,12 @@ button {
     transition: background-color 0.3s;
 }
 
-button:hover {
+.sms-plugin button:hover {
     background-color: #45a049;
 }
 
 
-.display-success {
+.sms-plugin .display-success {
     background-color: #d4edda;
     border-color: #c3e6cb;
     color: #155724;
@@ -71,7 +71,7 @@ button:hover {
     border-radius: 4px;
 }
 
-.display-error {
+.sms-plugin .display-error {
     background-color: #d4edda;
     border-color: #c3e6cb;
     color: red;
@@ -82,7 +82,7 @@ button:hover {
 
 
 /* List Student CSS */
-.list-card {
+.sms-plugin.list-card {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
@@ -98,34 +98,34 @@ button:hover {
 }
 
 /* Table style */
-.table-container {
+.sms-plugin .table-container {
     overflow-x: auto;
     width: 100%; /* Adjust as needed */
     padding: 10px;
 }
 
-.student-table {
+.sms-plugin .student-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 16px;
 }
 
-.student-table th,
-.student-table td {
+.sms-plugin .student-table th,
+.sms-plugin .student-table td {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
-.student-table th {
+.sms-plugin .student-table th {
     background-color: #f2f2f2;
     font-weight: bold;
 }
 
 /* Button style */
-.btn-edit,
-.btn-delete,
-.btn-view {
+.sms-plugin .btn-edit,
+.sms-plugin .btn-delete,
+.sms-plugin .btn-view {
     display: inline-block;
     padding: 8px 16px;
     margin: 4px;
@@ -140,20 +140,20 @@ button:hover {
     outline: none;
 }
 
-.btn-edit {
+.sms-plugin .btn-edit {
     background-color: #28a745;
 }
 
-.btn-delete {
+.sms-plugin .btn-delete {
     background-color: #dc3545;
 }
 
-.btn-view {
+.sms-plugin .btn-view {
     background-color: #007bff;
 }
 
-.btn-edit:hover,
-.btn-delete:hover,
-.btn-view:hover {
+.sms-plugin .btn-edit:hover,
+.sms-plugin .btn-delete:hover,
+.sms-plugin .btn-view:hover {
     opacity: 0.8;
 }
