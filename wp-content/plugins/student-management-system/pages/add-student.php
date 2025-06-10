@@ -6,12 +6,13 @@
         } elseif(isset($action) && $action == "view") {
           echo "View Student";
         } else {
+          $nonce = wp_create_nonce("wp_nonce_add_student");
           echo "Add Student";
         }
       ?>
     </h2>
 
-    <?php if (!empty($displayMessage)) {
+    <?php if (!empty($displayMessage) && $displayStatus) {
         ?>
             <div class="display-success">
                 <?php echo $displayMessage; ?>
@@ -19,14 +20,23 @@
         <?php
     } ?>
 
+    <?php if (!empty($displayMessage) && !$displayStatus) {
+        ?>
+            <div class="display-error">
+                <?php echo $displayMessage; ?>
+            </div>
+        <?php
+    } ?>
+
     <form method="post" class="add-student-form" 
     action="<?php 
-        if ($action == "edit") {
+        if (isset($action) && $action == "edit") {
             echo 'admin.php?page=student-management&action=edit&id=' . $student["Id"];
         } else {
             echo 'admin.php?page=add-student-management';
         }
     ?>">
+                <input type="hidden" name="wp_nonce_add_student" value="<?php echo $nonce; ?>">
                 <!-- Name -->
                 <div class="form-group">
                   <label for="name">Name:</label>

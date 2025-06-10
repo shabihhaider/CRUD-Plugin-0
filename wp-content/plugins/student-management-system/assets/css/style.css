@@ -71,7 +71,14 @@ button:hover {
     border-radius: 4px;
 }
 
-
+.display-error {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: red;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
 
 
 /* List Student CSS */

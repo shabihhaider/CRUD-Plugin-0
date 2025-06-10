@@ -135,7 +135,16 @@ class StudentManagement {
 
         // Check if the form is submitted
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn_submit'])) {
-            $this->saveStudentFormData();
+
+            // NONCE Verification
+            if (isset($_POST['wp_nonce_add_student']) && wp_verify_nonce($_POST['wp_nonce_add_student'], "wp_nonce_add_student")) {
+                // Success
+                $this->saveStudentFormData();
+            } else {
+                // Failed to verify
+                $this->message = "Verification Failed";
+                $this->status = 0;
+            }
         }
 
         $displayMessage = $this->message;
