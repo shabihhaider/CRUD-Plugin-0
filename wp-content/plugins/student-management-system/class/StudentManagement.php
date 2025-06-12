@@ -12,6 +12,17 @@ class StudentManagement {
 
         //add_action('admin_enqueue_scripts', array($this, 'addStudentPluginFiles'));
         add_action('admin_enqueue_scripts', [$this, 'addStudentPluginFiles']);
+
+        // plugin_action_links_{plugin_folder_name/plugin_main_file}
+        add_filter('plugin_action_links_' . SMS_PLUGIN_BASENAME, array($this, 'addPluginSettingsLinks'));
+    }
+
+    // Add settings link to the plugin
+    public function addPluginSettingsLinks($links) {
+        $settings_link = '<a href="options-general.php?page=sms-plugin-settings">Settings</a>';
+        array_unshift($links, $settings_link); // Add the settings link at the beginning
+        
+        return $links;
     }
 
     // Add student plugin menus and submenus
@@ -46,6 +57,21 @@ class StudentManagement {
             'add-student-management',
             array($this, 'addStudentCallback')
         );
+
+        // Settings page submenu inside Settings menu
+        add_options_page(
+            "SMS Plugin Settings", 
+            "SMS Plugin Settings", 
+            "manage_options", 
+            "sms-plugin-settings", 
+            array($this, "smsPluginActionHandle")
+        );
+
+    }
+
+    // Plugin Action Handler
+    public function smsPluginActionHandle() {
+        echo "<h1>Setting Page</h1>";
     }
 
     // List student callback

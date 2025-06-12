@@ -1,0 +1,105 @@
+/* Animate slide and fade in */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mmp-settings-wrap {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeInUp 0.6s ease-in-out;
+}
+
+.mmp-title {
+  font-size: 28px;
+  color: #1d2327;
+  margin-bottom: 20px;
+}
+
+.mmp-settings-form {
+  background: #f9f9f9;
+  padding: 25px;
+  border-radius: 10px;
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+.mmp-settings-form table.form-table {
+  width: 100%;
+  max-width: 600px;
+}
+
+.mmp-settings-form th {
+  width: 200px;
+  font-weight: 600;
+  color: #333;
+}
+
+.mmp-settings-form td {
+  padding-top: 10px;
+}
+
+textarea[name="mmp_message"] {
+  width: 100%;
+  max-width: 500px;
+  height: 100px;
+  border: 1px solid #ccd0d4;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+textarea[name="mmp_message"]:focus {
+  border-color: #007cba;
+  outline: none;
+}
+
+input[type="checkbox"][name="mmp_enabled"] {
+  transform: scale(1.4);
+  margin-top: 8px;
+}
+
+.mmp-button {
+  font-size: 16px;
+  padding: 10px 25px;
+  margin-top: 20px;
+  border-radius: 6px;
+  background: linear-gradient(to right, #0073aa, #0096d6);
+  border: none;
+  color: #fff;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.mmp-button:hover {
+  background: linear-gradient(to right, #005f8d, #008bbd);
+  transform: translateY(-2px);
+}
+
+.mmp-preview-box {
+  margin-top: 40px;
+  padding: 20px;
+  border-left: 4px solid #0073aa;
+  background: #eef6fa;
+  border-radius: 8px;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.mmp-preview-box h2 {
+  margin-top: 0;
+  font-size: 20px;
+  color: #0073aa;
+}
+
+.mmp-preview-message {
+  font-style: italic;
+  color: #333;
+}

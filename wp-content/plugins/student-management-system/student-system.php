@@ -13,6 +13,9 @@ Requires PHP: 7.4
 
 define("SMS_PLUGIN_PATH", plugin_dir_path(__FILE__));
 define("SMS_PLUGIN_URL", plugin_dir_url(__FILE__));
+define("SMS_PLUGIN_BASENAME", plugin_basename(__FILE__)); // Define plugin basename
+// echo "Plugin Path: " . SMS_PLUGIN_BASENAME;
+// die;
 
 include_once(SMS_PLUGIN_PATH."class/StudentManagement.php"); // Add class path
 
